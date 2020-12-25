@@ -45,4 +45,21 @@ df.write \
 
 # COMMAND ----------
 
+### WRITE TO SNOWFLAKE
+
+options = {
+    "sfUrl": "your-url",
+    "sfUser": "account-name",
+    "sfPassword": "account-password",
+    "sfDatabase": "database-name",
+    "sfSchema": "schema-name",
+    "sfWarehouse": "warehouse-name"
+}
+
+df.write \
+    .format("net.snowflake.spark.snowflake") \
+    .options(**options) \
+    .option("dbtable", "table-name") \
+    .mode("Append") \
+    .save()
 
